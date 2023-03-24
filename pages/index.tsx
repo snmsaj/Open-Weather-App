@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import Layout from "@/components/layout";
 import CitiesList from "@/components/CitiesList";
 import Error from "@/components/Error";
 import { CssTextField } from "@/components/CssTextField";
@@ -39,48 +40,53 @@ export default function Home() {
   };
 
   return (
-    <main>
-      {/* Search */}
-      <form onSubmit={getCities} style={{ marginBottom: "16px" }}>
-        <CssTextField
-          type='text'
-          label='Search City'
-          variant='outlined'
-          margin='normal'
-          sx={{ color: "white" }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton type='submit' edge='end'>
-                  <SearchIcon sx={{ color: "white", opacity: "90%" }} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          onChange={(e) => setCityInput(e.target.value)}
-          fullWidth
-        />
-      </form>
+    <Layout>
+      <main>
+        {/* Search */}
+        <form onSubmit={getCities} style={{ marginBottom: "16px" }}>
+          <CssTextField
+            type='text'
+            label='Search City'
+            variant='outlined'
+            margin='normal'
+            sx={{ color: "white" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <IconButton type='submit' edge='end'>
+                    <SearchIcon sx={{ color: "white", opacity: "90%" }} />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            onChange={(e) => setCityInput(e.target.value)}
+            fullWidth
+          />
+        </form>
 
-      {/* Loader */}
-      {loading ? (
-        <div className='centerAbsolute'>
-          <CircularProgress />
-        </div>
-      ) : null}
+        {/* Loader */}
+        {loading ? (
+          <div className='centerAbsolute'>
+            <CircularProgress />
+          </div>
+        ) : null}
 
-      {error ? <Error message={error.message} /> : null}
+        {error ? <Error message={error.message} /> : null}
 
-      {!cities.length && !error && !loading ? (
-        <div className='centerAbsolute'>
-          <Typography variant='h4' sx={{ textAlign: "center", color: "white" }}>
-            Please search a city
-          </Typography>
-        </div>
-      ) : null}
+        {!cities.length && !error && !loading ? (
+          <div className='centerAbsolute'>
+            <Typography
+              variant='h4'
+              sx={{ textAlign: "center", color: "white" }}
+            >
+              Please search a city
+            </Typography>
+          </div>
+        ) : null}
 
-      {/* Cities data */}
-      {cities.length ? <CitiesList data={cities} /> : null}
-    </main>
+        {/* Cities data */}
+        {cities.length ? <CitiesList data={cities} /> : null}
+      </main>
+    </Layout>
   );
 }

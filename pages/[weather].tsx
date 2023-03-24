@@ -3,6 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import { ArrowBack } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import Layout from "@/components/layout";
 import MainWeather from "@/components/MainWeather";
 import OtherWeather from "@/components/OtherWeather";
 
@@ -12,15 +13,17 @@ export default function WeatherPage({
   country,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <main>
-      <Link href='/' className='back-link'>
-        <ArrowBack sx={{ color: "white" }} />
-        <Typography sx={{ color: "white" }}>Back</Typography>
-      </Link>
+    <Layout>
+      <main>
+        <Link href='/' className='back-link'>
+          <ArrowBack sx={{ color: "white" }} />
+          <Typography sx={{ color: "white" }}>Back</Typography>
+        </Link>
 
-      <MainWeather data={data} city={city} country={country} />
-      <OtherWeather data={data} />
-    </main>
+        <MainWeather data={data} city={city} country={country} />
+        <OtherWeather data={data} />
+      </main>
+    </Layout>
   );
 }
 
