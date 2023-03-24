@@ -1,47 +1,86 @@
-// Create a Next.js React application that allows the user to input a city into a search field and displays the weather associated with that city once they submit it. You can use weather data from OpenWeatherMap. Once you're finished, create a Github Action workflow that deploys the app to Github Pages and send me the link to the site.
-
-import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import axios from "axios";
-
-const inter = Inter({ subsets: ["latin"] });
+import axios, { AxiosError } from "axios";
+import {
+  CircularProgress,
+  IconButton,
+  InputAdornment,
+  Typography,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import CitiesList from "@/components/CitiesList";
+import Error from "@/components/Error";
+import { CssTextField } from "@/components/CssTextField";
 
 export default function Home() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=athens,ga,us&limit=5&appid=${process.env.NEXT_PUBLIC_API_KEY}`;
-  // create api call
+  const [cityInput, setCityInput] = useState("");
+  const [cities, setCities] = useState<City[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<AxiosError | null>(null);
 
-  const fetchWeather = (e: React.FormEvent<HTMLFormElement>) => {
+  // Fetch Cities
+  const getCities = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
 
-    axios.get(url).then((res) => {
-      console.log(res.data);
-      setWeather(res.data);
-    });
-
-    setIsLoading(false);
+    await axios
+      .get(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${process.env.NEXT_PUBLIC_API_KEY}`
+      )
+      .then((res) => {
+        setCities(res.data);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setCities([]);
+        setError(err);
+        setLoading(false);
+      });
   };
+
   return (
-    <>
-      <Head>
-        <title>City Weather</title>
-        <meta name='description' content='Search weather in a city' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <main>
-        <form onSubmit={fetchWeather}>
-          <input type='text' placeholder='Search City' />
-          <button type='submit'>Search</button>
-        </form>
-      </main>
-    </>
+    <main>
+      {/* Search */}
+      <form onSubmit={getCities} style={{ marginBottom: "16px" }}>
+        <CssTextField
+          type='text'
+          label='Search City'
+          variant='outlined'
+          margin='normal'
+          sx={{ color: "white" }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <IconButton type='submit' edge='end'>
+                  <SearchIcon sx={{ color: "white", opacity: "90%" }} />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          onChange={(e) => setCityInput(e.target.value)}
+          fullWidth
+        />
+      </form>
+
+      {/* Loader */}
+      {loading ? (
+        <div className='centerAbsolute'>
+          <CircularProgress />
+        </div>
+      ) : null}
+
+      {error ? <Error message={error.message} /> : null}
+
+      {!cities.length && !error && !loading ? (
+        <div className='centerAbsolute'>
+          <Typography variant='h4' sx={{ textAlign: "center", color: "white" }}>
+            Please search a city
+          </Typography>
+        </div>
+      ) : null}
+
+      {/* Cities data */}
+      {cities.length ? <CitiesList data={cities} /> : null}
+    </main>
   );
 }
