@@ -10,7 +10,6 @@ export default function Error({ message }: ErrorProps) {
       style={{ textAlign: "center", color: "white" }}
     >
       <Typography variant='h4'>{message}</Typography>
-      <Typography variant='h5'>Please enter a valid city</Typography>
     </div>
   );
 }
