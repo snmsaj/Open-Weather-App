@@ -3,7 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import { ArrowBack } from "@mui/icons-material";
 import { Typography } from "@mui/material";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import MainWeather from "@/components/MainWeather";
 import OtherWeather from "@/components/OtherWeather";
 

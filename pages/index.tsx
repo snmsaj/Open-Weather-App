@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import CitiesList from "@/components/CitiesList";
 import Error from "@/components/Error";
 import { CssTextField } from "@/components/CssTextField";
