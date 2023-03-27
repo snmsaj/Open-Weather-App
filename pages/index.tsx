@@ -25,7 +25,7 @@ export default function Home() {
 
     await axios
       .get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${process.env.NEXT_PUBLIC_API_KEY}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${process.env.NEXT_PUBLIC_API_KEY}`
       )
       .then((res) => {
         setCities(res.data);
