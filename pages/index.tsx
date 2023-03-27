@@ -59,6 +59,7 @@ export default function Home() {
                 </InputAdornment>
               ),
             }}
+            value={cityInput}
             onChange={(e) => setCityInput(e.target.value)}
             fullWidth
           />
