@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { lat, lon, city, country } = context.query;
 
   const res = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=7d5fd222b95a49ae88b8165cf2a0076d`
   );
   const data: Weather = res.data;
 
