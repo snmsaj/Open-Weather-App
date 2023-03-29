@@ -3,8 +3,8 @@ import { Paper, Typography } from "@mui/material";
 
 type WeatherProps = {
   data: Weather;
-  city: string;
-  country: string;
+  city: string | string[] | undefined;
+  country: string | string[] | undefined;
 };
 
 export default function MainWeather({ data, city, country }: WeatherProps) {
@@ -17,14 +17,14 @@ export default function MainWeather({ data, city, country }: WeatherProps) {
       </Typography>
       <div className='temp-container'>
         <div>
-          <Typography variant='h1'>{main.temp.toFixed(0)}&#176;</Typography>
+          <Typography variant='h1'>{main?.temp?.toFixed(0)}&#176;</Typography>
           <Typography variant='h6' sx={{ textTransform: "capitalize" }}>
-            {weather[0].description}
+            {weather?.[0].description}
           </Typography>
         </div>
 
         <Image
-          src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+          src={`https://openweathermap.org/img/wn/${weather?.[0].icon}@2x.png`}
           alt='weather image'
           width='120'
           height='120'

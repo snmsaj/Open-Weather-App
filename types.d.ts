@@ -10,11 +10,11 @@ type City = {
 };
 
 type Weather = {
-  coord: {
+  coord?: {
     lon: number;
     lat: number;
   };
-  weather: [
+  weather?: [
     {
       id: number;
       main: string;
@@ -22,8 +22,8 @@ type Weather = {
       icon: string;
     }
   ];
-  base: string;
-  main: {
+  base?: string;
+  main?: {
     temp: number;
     feels_like: number;
     temp_min: number;
@@ -33,33 +33,33 @@ type Weather = {
     sea_level: number;
     grnd_level: number;
   };
-  visibility: number;
-  wind: {
+  visibility?: number;
+  wind?: {
     speed: number;
     deg: number;
     gust: number;
   };
-  rain: {
+  rain?: {
     "1h": number;
     "3h": number;
   };
-  snow: {
+  snow?: {
     "1h": number;
     "3h": number;
   };
-  clouds: {
+  clouds?: {
     all: number;
   };
-  dt: number;
-  sys: {
+  dt?: number;
+  sys?: {
     type: number;
     id: number;
     country: string;
     sunrise: number;
     sunset: number;
   };
-  timezone: number;
-  id: number;
-  name: string;
-  cod: number;
+  timezone?: number;
+  id?: number;
+  name?: string;
+  cod?: number;
 };
