@@ -5,11 +5,11 @@ const style = { display: "flex", justifyContent: "space-between", gap: "4px" };
 
 export default function OtherWeather({ data }: WeatherProps) {
   const { main, wind, clouds, sys } = data;
-  const sunrise = new Date(sys.sunrise * 1000).toLocaleTimeString([], {
+  const sunrise = new Date(sys?.sunrise * 1000).toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const sunset = new Date(sys.sunset * 1000).toLocaleTimeString([], {
+  const sunset = new Date(sys?.sunset * 1000).toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -26,7 +26,7 @@ export default function OtherWeather({ data }: WeatherProps) {
     >
       <ListItem sx={style} divider>
         <Typography>Feels Like</Typography>
-        <Typography>{main.feels_like.toFixed(0)}&#176;</Typography>
+        <Typography>{main?.feels_like.toFixed(0)}&#176;</Typography>
       </ListItem>
 
       <ListItem sx={style} divider>
@@ -39,28 +39,28 @@ export default function OtherWeather({ data }: WeatherProps) {
       <ListItem sx={style} divider>
         <Typography>High / Low</Typography>
         <Typography>
-          {main.temp_max.toFixed(0)}&#176;/{main.temp_min.toFixed(0)}&#176;
+          {main?.temp_max.toFixed(0)}&#176;/{main?.temp_min.toFixed(0)}&#176;
         </Typography>
       </ListItem>
 
       <ListItem sx={style} divider>
         <Typography>Wind</Typography>
-        <Typography>{wind.speed} mph</Typography>
+        <Typography>{wind?.speed} mph</Typography>
       </ListItem>
 
       <ListItem sx={style} divider>
         <Typography>Humidity</Typography>
-        <Typography>{main.humidity}%</Typography>
+        <Typography>{main?.humidity}%</Typography>
       </ListItem>
 
       <ListItem sx={style} divider>
         <Typography>Clouds</Typography>
-        <Typography>{clouds.all}%</Typography>
+        <Typography>{clouds?.all}%</Typography>
       </ListItem>
 
       <ListItem sx={style} divider>
         <Typography>Pressure</Typography>
-        <Typography>{main.pressure}</Typography>
+        <Typography>{main?.pressure}</Typography>
       </ListItem>
 
       <ListItem sx={style}>
