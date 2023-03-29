@@ -11,7 +11,7 @@ export default function CitiesList({ data }: DataProps) {
       {data?.map((city, i) => (
         <Link
           href={{
-            pathname: "/[slug]",
+            pathname: "/weather",
             query: {
               city: city.name,
               country: city.country,
