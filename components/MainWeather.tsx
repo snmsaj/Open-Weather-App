@@ -17,7 +17,7 @@ export default function MainWeather({ data, city, country }: WeatherProps) {
       </Typography>
       <div className='temp-container'>
         <div>
-          <Typography variant='h1'>{main?.temp?.toFixed(0)}&#176;</Typography>
+          <Typography variant='h1'>{main?.temp.toFixed(0)}&#176;</Typography>
           <Typography variant='h6' sx={{ textTransform: "capitalize" }}>
             {weather?.[0].description}
           </Typography>

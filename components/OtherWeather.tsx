@@ -1,21 +1,13 @@
 import { List, ListItem, ListSubheader, Typography } from "@mui/material";
+import formatDate from "@/utils/formatDate";
 
 type WeatherProps = { data: Weather };
 const style = { display: "flex", justifyContent: "space-between", gap: "4px" };
 
-const newDate = (time: number | undefined) => {
-  return typeof time === "number"
-    ? new Date(time * 1000)?.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : null;
-};
-
 export default function OtherWeather({ data }: WeatherProps) {
   const { main, wind, clouds, sys } = data;
-  const sunrise = newDate(sys?.sunrise);
-  const sunset = newDate(sys?.sunset);
+  const sunrise = formatDate(sys?.sunrise);
+  const sunset = formatDate(sys?.sunset);
 
   return (
     <List

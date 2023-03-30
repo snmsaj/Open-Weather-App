@@ -49,6 +49,7 @@ a {
   align-items: center;
   gap: 4px;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .temp-container {
