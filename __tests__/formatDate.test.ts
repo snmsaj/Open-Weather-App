@@ -1,4 +1,4 @@
-import formatDate from "./formatDate";
+import formatDate from "@/utils/formatDate";
 
 describe("formatDate", () => {
   it("should format a given unix timestamp to a 2-digit hour and minute time string", () => {
