@@ -1,19 +1,20 @@
-describe("My First Test", () => {
-  it("Gets, types and asserts", () => {
-    cy.visit("https://example.cypress.io");
+import { cy } from "local-cypress";
 
-    cy.contains("type").click();
+describe("User searching and selecting a city", () => {
+  // beforeEach(() => {
+  //   cy.visit("http://localhost:3000/");
+  // });
 
-    // Should be on a new URL which
-    // includes '/commands/actions'
-    cy.url().should("include", "/commands/actions");
-
-    // Get an input, type into it
-    cy.get(".action-email").type("fake@email.com");
-
-    //  Verify that the value has been updated
-    cy.get(".action-email").should("have.value", "fake@email.com");
+  it("searches new york and selects the first choice, then go back to home page after data loads", () => {
+    cy.visit("http://localhost:3000/");
+    cy.get('[data-cy="search-input"]').type("new york").type("{enter}");
+    cy.get('[data-cy="city-1"]').should("be.visible").click();
   });
-});
 
-export {};
+  // it("should go back to home page after data loads", () => {
+  //   cy.get('[data-cy="main-weather"]', { timeout: 10_000 }).should(
+  //     "be.visible"
+  //   );
+  //   cy.get('[data-cy="back-btn"]').click();
+  // });
+});

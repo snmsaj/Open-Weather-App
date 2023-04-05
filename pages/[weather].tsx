@@ -40,7 +40,7 @@ export default function WeatherPage() {
   return (
     <Layout>
       <main>
-        <button onClick={router.back} className='back-link'>
+        <button onClick={router.back} className='back-link' data-cy='back-btn'>
           <ArrowBack sx={{ color: "white" }} />
           <Typography sx={{ color: "white" }}>Back</Typography>
         </button>
@@ -54,8 +54,12 @@ export default function WeatherPage() {
 
         {error ? <Error message={error.message} /> : null}
 
-        <MainWeather data={weather} city={city} country={country} />
-        <OtherWeather data={weather} />
+        {Object.keys(weather).length ? (
+          <>
+            <MainWeather data={weather} city={city} country={country} />
+            <OtherWeather data={weather} />
+          </>
+        ) : null}
       </main>
     </Layout>
   );

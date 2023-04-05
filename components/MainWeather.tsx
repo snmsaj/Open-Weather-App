@@ -11,7 +11,11 @@ export default function MainWeather({ data, city, country }: WeatherProps) {
   const { weather, main } = data;
 
   return (
-    <Paper sx={{ padding: "16px", marginBottom: "16px" }} elevation={0}>
+    <Paper
+      sx={{ padding: "16px", marginBottom: "16px" }}
+      elevation={0}
+      data-cy='main-weather'
+    >
       <Typography variant='h5'>
         {city}, {country}
       </Typography>
