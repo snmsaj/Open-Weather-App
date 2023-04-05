@@ -61,6 +61,7 @@ export default function Home() {
             }}
             value={cityInput}
             onChange={(e) => setCityInput(e.target.value)}
+            data-cy='search-input'
             fullWidth
           />
         </form>

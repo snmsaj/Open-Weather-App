@@ -20,6 +20,7 @@ export default function CitiesList({ data }: DataProps) {
             },
           }}
           key={i}
+          data-cy={`city-${i}`}
         >
           <Paper style={{ padding: "20px" }} variant='outlined'>
             <Typography className='text-xl'>{city.name}</Typography>
