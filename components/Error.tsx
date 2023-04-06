@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { Typography } from "@mui/material";
 
 type ErrorProps = { message: string };
