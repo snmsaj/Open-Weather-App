@@ -7,7 +7,7 @@ type DataProps = {
 
 export default function CitiesList({ data }: DataProps) {
   return (
-    <Stack spacing={3} direction='column'>
+    <Stack spacing={3} direction='column' role='list'>
       {data?.map((city, i) => (
         <Link
           href={{
@@ -21,6 +21,7 @@ export default function CitiesList({ data }: DataProps) {
           }}
           key={i}
           data-cy={`city-${i}`}
+          role='listitem'
         >
           <Paper style={{ padding: "20px" }} variant='outlined'>
             <Typography className='text-xl'>{city.name}</Typography>
