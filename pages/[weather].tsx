@@ -40,9 +40,13 @@ export default function WeatherPage() {
   return (
     <Layout>
       <main>
-        <button onClick={router.back} className='back-link' data-cy='back-btn'>
+        <button
+          onClick={() => router.push("/")}
+          className='back-link'
+          data-cy='back-btn'
+        >
           <ArrowBack sx={{ color: "white" }} />
-          <Typography sx={{ color: "white" }}>Back</Typography>
+          <Typography sx={{ color: "white" }}>Return Home</Typography>
         </button>
 
         {/* Loader */}
