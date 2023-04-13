@@ -81,7 +81,7 @@ export default function Home() {
               variant='h4'
               sx={{ textAlign: "center", color: "white" }}
             >
-              Please search a city
+              Please enter a valid city
             </Typography>
           </div>
         ) : null}
